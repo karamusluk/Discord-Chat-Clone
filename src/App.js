@@ -13,6 +13,11 @@ import { selectUser } from "./features/userSlice";
 function App() {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
+
+  useEffect(() => {
+    document.title = "Discord Chat Clone";
+  }, []);
+
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
       if (authUser) {

@@ -1,6 +1,6 @@
 import "./Chat.css";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { selectChannelId, selectChannelName } from "./features/appSlice";
 
 import AddCircleIcon from "@material-ui/icons/AddCircle";
@@ -23,6 +23,8 @@ function Chat() {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
 
+  const messagesEndRef = useRef(null);
+
   useEffect(() => {
     if (channelId) {
       db.collection("channels")
@@ -35,6 +37,12 @@ function Chat() {
     }
   }, [channelId]);
 
+  const scrollToBottom = () => {
+    messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(scrollToBottom, [messages]);
+
   const sendMessage = (e) => {
     e.preventDefault();
 
@@ -43,6 +51,8 @@ function Chat() {
       message: input,
       user: user,
     });
+
+    scrollToBottom();
 
     setInput("");
   };
@@ -59,6 +69,7 @@ function Chat() {
             user={message.user}
           />
         ))}
+        <div ref={messagesEndRef} />
       </div>
 
       <div className="chat__input">
@@ -68,7 +79,9 @@ function Chat() {
             value={input}
             disabled={!channelId}
             onChange={(e) => setInput(e.target.value)}
-            placeholder={`Message #${channelName}`}
+            placeholder={
+              channelName ? `Message #${channelName}` : `Select a channel`
+            }
           />
           <button
             className="chat__inputButton"
