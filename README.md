@@ -1,5 +1,43 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
+## Setup
+
+Create `.env` file.
+Create [Firebase Project and add Cloud Firestore](https://console.firebase.google.com/).
+Then get the config something as below;
+
+```js
+const firebaseConfig = {
+  apiKey: "XXXXXX-XXXXXXX",
+  authDomain: "XXXX.firebaseapp.com",
+  databaseURL: "https://XXXX.firebaseio.com",
+  projectId: "XXXX",
+  storageBucket: "XXXX.appspot.com",
+  messagingSenderId: "XXXXXXXXXXX",
+  appId: "1:XXXXXXXXX:web:XXXXXXXX",
+};
+```
+
+Then, add these config to `.env`file as follows;
+
+```env
+REACT_APP_FIREBASE_API_KEY="XXXXXX-XXXXXXX"
+REACT_APP_FIREBASE_AUTH_DOMAIN="XXXXX.firebaseapp.com"
+REACT_APP_FIREBASE_DATABASE_URL="https://XXXX.firebaseio.com"
+REACT_APP_FIREBASE_PROJECT_ID="XXXX"
+REACT_APP_FIREBASE_STORAGE_BUCKET="XXXX.appspot.com"
+REACT_APP_FIREBASE_MESSAGE_SENDER_ID="XXXXXXXXXXXXX"
+REACT_APP_FIREBASE_APP_ID="1:XXXXXXXXX:web:XXXXXXXX"
+```
+
+Run following command to start in development mode.
+
+```bash
+npm start
+```
+
+###### Please check all available script below
+
 ## Available Scripts
 
 In the project directory, you can run:
